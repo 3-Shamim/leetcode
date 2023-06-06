@@ -1,4 +1,4 @@
-package n4_median_of_two_sorted_arrays.n2_add_two_numbers;
+package n4_median_of_two_sorted_arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
