@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="leetcode" />
         <module name="leetcode-java" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="leetcode" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
