@@ -15,6 +15,7 @@ class Solution {
 
         int length = s.length();
 
+        Set<String> visited = new HashSet<>();
         String res = "";
 
         int position1 = 0;
@@ -56,6 +57,10 @@ class Solution {
                         position2 = length - 1;
                         pointer2 = position2;
 
+                        if (res.length() > (position2 + 1 - position1)) {
+                            break;
+                        }
+
                     } else {
 
                         String value = s.substring(position1, position2 + 1);
@@ -73,6 +78,10 @@ class Solution {
                                 position2 = length - 1;
                                 pointer2 = position2;
 
+                                if (res.length() > (position2 + 1 - position1)) {
+                                    break;
+                                }
+
                                 continue;
                             }
                         } else {
@@ -87,6 +96,10 @@ class Solution {
 
                                 position2 = length - 1;
                                 pointer2 = position2;
+
+                                if (res.length() > (position2 + 1 - position1)) {
+                                    break;
+                                }
 
                                 continue;
                             }
