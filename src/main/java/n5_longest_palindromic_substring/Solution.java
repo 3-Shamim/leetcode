@@ -25,8 +25,6 @@ class Solution {
 
         while (true) {
 
-            System.out.println(position1);
-
             if (s.charAt(pointer1) != s.charAt(pointer2)) {
                 pointer1 = position1;
                 position2--;
