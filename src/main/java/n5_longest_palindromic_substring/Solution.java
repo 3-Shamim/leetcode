@@ -1,6 +1,7 @@
 package n5_longest_palindromic_substring;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -119,53 +120,20 @@ class Solution {
         return res;
     }
 
-    public String longestPalindrome2(String s) {
-
-        Set<String> subSet = new HashSet<>();
-        Set<String> visited = new HashSet<>();
-
-        String res = null;
-
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = i + 1; j <= s.length(); j++) {
-                subSet.add(s.substring(i, j));
-            }
-        }
-
-        for (String value : subSet) {
-
-            if (!visited.contains(value)) {
-
-                visited.add(value);
-
-                boolean isPalindrome = isPalindrome(value);
-
-                if (isPalindrome) {
-
-                    if (res == null) {
-                        res = value;
-                    } else if (value.length() > res.length()) {
-                        res = value;
-                    }
-
-                }
-
-            }
-
-        }
-
-        return res;
-    }
-
     public String longestPalindrome1(String s) {
 
+        int length = s.length();
+
         Set<String> visited = new HashSet<>();
+        String res = "";
 
-        String res = null;
+        for (int i = 0; i < length; i++) {
 
-        for (int i = 0; i < s.length(); i++) {
+            for (int j = i + 1; j <= length; j++) {
 
-            for (int j = i + 1; j <= s.length(); j++) {
+                if (res.length() > length - i) {
+                    break;
+                }
 
                 String value = s.substring(i, j);
 
@@ -177,9 +145,7 @@ class Solution {
 
                     if (isPalindrome) {
 
-                        if (res == null) {
-                            res = value;
-                        } else if (value.length() > res.length()) {
+                        if (value.length() > res.length()) {
                             res = value;
                         }
 
@@ -190,6 +156,103 @@ class Solution {
         }
 
         return res;
+    }
+
+    public String longestPalindrome2(String s) {
+
+        Set<String> subSet = new HashSet<>();
+
+        String res = "";
+
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i + 1; j <= s.length(); j++) {
+                subSet.add(s.substring(i, j));
+            }
+        }
+
+        for (String value : subSet) {
+
+            boolean isPalindrome = isPalindrome(value);
+
+            if (isPalindrome) {
+
+                if (value.length() > res.length()) {
+                    res = value;
+                }
+
+            }
+        }
+
+
+        return res;
+    }
+
+    public String longestPalindrome3(String s) {
+
+        Set<String> subSet = new HashSet<>();
+
+        String res = "";
+
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i + 1; j <= s.length(); j++) {
+                String value = s.substring(i, j);
+                subSet.add(value);
+            }
+        }
+
+        List<String> sortedSet = subSet.stream().sorted((o1, o2) -> Integer.compare(o2.length(), o1.length())).toList();
+
+        for (String value : sortedSet) {
+
+            boolean isPalindrome = isPalindrome(value);
+
+            if (isPalindrome) {
+                res = value;
+                break;
+            }
+
+        }
+
+
+        return res;
+    }
+
+    public String longestPalindrome4(String s) {
+
+        int length = s.length();
+        String res = "";
+
+        for (int i = 0; i < length; i++) {
+
+            if (res.length() > (length - i)) {
+                break;
+            }
+
+            String expand = expand(s, i, i);
+
+            if (expand.length() > res.length()) {
+                res = expand;
+            }
+
+            String expand1 = expand(s, i, i + 1);
+
+            if (expand1.length() > res.length()) {
+                res = expand1;
+            }
+
+        }
+
+        return res;
+    }
+
+    private String expand(String s, int start, int end) {
+
+        while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
+            start--;
+            end++;
+        }
+
+        return s.substring(start + 1, end);
     }
 
     private static boolean isPalindrome(String value) {
