@@ -1,4 +1,4 @@
-package n28_find_index_of_the_first_occurrence_in_a_string.n2_add_two_numbers;
+package n13_roman_to_integer;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,8 +12,9 @@ class Main {
 
         Solution solution = new Solution();
 
-        System.out.println(solution.strStr("sadbutsad", "sad"));
-        System.out.println(solution.strStr("leetcode", "leeto"));
+        System.out.println(solution.romanToInt("III"));
+        System.out.println(solution.romanToInt("LVIII"));
+        System.out.println(solution.romanToInt("MCMXCIV"));
 
     }
 
