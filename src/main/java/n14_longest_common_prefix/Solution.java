@@ -94,6 +94,10 @@ class Solution {
             return "";
         }
 
+        if (strs.length == 1) {
+            return strs[0];
+        }
+
         String result = "";
 
         for (int i = 0; i < strs[0].length(); i++) {
