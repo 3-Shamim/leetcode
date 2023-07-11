@@ -26,28 +26,59 @@ class Solution {
 
         StringBuilder roman = new StringBuilder();
 
-        while (true) {
+        while (num > 0) {
 
-            if (num > 1000) {
-                num = num % 1000;
+            if (num >= 1000) {
+                num = num - 1000;
                 roman.append("M");
-            } else if (num > 500) {
-                num = num % 500;
-                roman.append("D");
-            } else if (num > 100) {
-                num = num % 100;
-                roman.append("C");
-            } else if (num > 50) {
-                num = num % 50;
-                roman.append("L");
-            } else if (num > 10) {
-                num = num % 10;
-                roman.append("M");
-            } else if (num > 5) {
-                num = num % 5;
-                roman.append("V");
+            } else if (num >= 500) {
+                if (num >= 900) {
+                    num = num - 900;
+                    roman.append("CM");
+                } else {
+                    num = num - 500;
+                    roman.append("D");
+                }
+            } else if (num >= 100) {
+                if (num >= 400) {
+                    num = num - 400;
+                    roman.append("CD");
+                } else {
+                    num = num - 100;
+                    roman.append("C");
+                }
+            } else if (num >= 50) {
+                if (num >= 90) {
+                    num = num - 90;
+                    roman.append("XC");
+                } else {
+                    num = num - 50;
+                    roman.append("L");
+                }
+            } else if (num >= 10) {
+                if (num >= 40) {
+                    num = num - 40;
+                    roman.append("XL");
+                } else {
+                    num = num - 10;
+                    roman.append("X");
+                }
+            } else if (num >= 5) {
+                if (num == 9) {
+                    num = num - 9;
+                    roman.append("IX");
+                } else {
+                    num = num - 5;
+                    roman.append("V");
+                }
             } else {
-                break;
+                if (num == 4) {
+                    num = num - 4;
+                    roman.append("IV");
+                } else {
+                    num = num - 1;
+                    roman.append("I");
+                }
             }
 
         }

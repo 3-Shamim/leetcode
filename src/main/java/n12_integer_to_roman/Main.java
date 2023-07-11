@@ -17,6 +17,8 @@ class Main {
         System.out.println(solution.intToRoman(58));
         System.out.println("========================");
         System.out.println(solution.intToRoman(1994));
+        System.out.println("========================");
+        System.out.println(solution.intToRoman(800));
 
     }
 
