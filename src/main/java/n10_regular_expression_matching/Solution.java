@@ -12,12 +12,12 @@ class Solution {
 
         int sLen = s.length();
         int pLen = p.length();
-        char star = '0';
+        char starChar = '0';
 
         for (int i = 0; i < sLen; i++) {
 
             char c = s.charAt(i);
-            char c1 = star == '0' ? p.charAt(i) : star;
+            char c1 = starChar == '0' ? p.charAt(i) : starChar;
 
             if (i == pLen - 1) {
 
@@ -30,7 +30,8 @@ class Solution {
                 }
 
                 if (c1 == '*') {
-                    star = s.charAt(i - 1);
+                    starChar = p.charAt(i - 1);
+                    c1 = starChar;
                 }
             }
 
