@@ -11,14 +11,29 @@ class Main {
     public static void main(String[] args) {
 
         Solution solution = new Solution();
-//        System.out.println(solution.isMatch("aa", "a"));
-//        System.out.println(solution.isMatch("aa", "a*"));
-//        System.out.println(solution.isMatch("aa", "a."));
-//        System.out.println(solution.isMatch("aa", ".."));
-//        System.out.println(solution.isMatch("aa", ".*"));
-//        System.out.println(solution.isMatch("ab", ".*"));
-//        System.out.println(solution.isMatch("aaab", "a.ab*"));
-        System.out.println(solution.isMatch("aab", "c*a*b"));
+
+//        System.out.printf("%b - %b\n", solution.isMatch("", ""), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("a", ""), false);
+//        System.out.printf("%b - %b\n", solution.isMatch("", "a"), false);
+//        System.out.printf("%b - %b\n", solution.isMatch("aa", "a"), false);
+//        System.out.printf("%b - %b\n", solution.isMatch("aa", "ab"), false);
+//        System.out.printf("%b - %b\n", solution.isMatch("aa", "aa"), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("aa", ".."), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("aa", "a."), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("aa", ".a"), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("aa", "a*"), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("aaaaaa", "a*"), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("aaaaaa", "aaaa"), false);
+//        System.out.printf("%b - %b\n", solution.isMatch("aaa", "aaaa"), false);
+//        System.out.printf("%b - %b\n", solution.isMatch("aa", ".*"), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("ab", ".*"), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("absadsagfeffsdffef", ".*"), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("aaab", "a.ab*"), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("aab", "c*a*b"), true);
+//        System.out.printf("%b - %b\n", solution.isMatch("ccaab", "c*a*b"), true);
+
+//        System.out.printf("%b - %b\n", solution.isMatch("dccaab", "c*a*b"), false);
+        System.out.printf("%b - %b\n", solution.isMatch("a", ".*..a*"), false);
 
     }
 
