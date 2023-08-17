@@ -1,5 +1,6 @@
 package n5_longest_palindromic_substring;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,6 @@ class Solution {
 
         int length = s.length();
 
-        Set<String> visited = new HashSet<>();
         String res = "";
 
         int position1 = 0;
@@ -213,7 +213,6 @@ class Solution {
 
         }
 
-
         return res;
     }
 
@@ -253,6 +252,38 @@ class Solution {
         }
 
         return s.substring(start + 1, end);
+    }
+
+    public String longestPalindrome5(String s) {
+
+        boolean[][] dp = new boolean[s.length()][s.length()];
+
+        for (int i = 0; i < s.length(); i++) {
+
+            for (int j = 0; j < s.length(); j++) {
+
+                if (j >= i) {
+
+                    if (s.charAt(i) == s.charAt(j)) {
+
+                        dp[i][j] = true;
+
+                        int lastIndexI = i > 0 ? i - 1 : i;
+                        int lastIndexJ = i > 0 ? i - 1 : i;
+                        System.out.printf("DP: %d-%d - %b", lastIndexI, lastIndexJ, dp[lastIndexI][lastIndexJ]);
+
+                    }
+
+                    System.out.printf("Substring: %d - %d - %s\n", i, j, s.substring(i, j+1));
+                }
+
+            }
+
+        }
+
+        System.out.println(Arrays.deepToString(dp));
+
+        return null;
     }
 
     private static boolean isPalindrome(String value) {
