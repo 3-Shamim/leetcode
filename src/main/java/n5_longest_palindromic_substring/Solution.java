@@ -1,5 +1,6 @@
 package n5_longest_palindromic_substring;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,9 @@ import java.util.Set;
 
 class Solution {
 
+    /* Note:
+    *   Not accepted in leetcode because it's exceed time limit.
+    * */
     public String longestPalindrome(String s) {
 
         int length = s.length();
@@ -119,6 +123,9 @@ class Solution {
         return res;
     }
 
+    /* Note:
+    *   Not accepted in leetcode because it's exceed time limit.
+    * */
     public String longestPalindrome1(String s) {
 
         int length = s.length();
@@ -157,6 +164,9 @@ class Solution {
         return res;
     }
 
+    /* Note:
+    *   Not accepted in leetcode because it's exceed time limit.
+    * */
     public String longestPalindrome2(String s) {
 
         Set<String> subSet = new HashSet<>();
@@ -186,6 +196,9 @@ class Solution {
         return res;
     }
 
+    /* Note:
+    *   Not accepted in leetcode because it's exceed time limit.
+    * */
     public String longestPalindrome3(String s) {
 
         Set<String> subSet = new HashSet<>();
@@ -215,67 +228,50 @@ class Solution {
         return res;
     }
 
+    /* Note:
+    *   This is accepted in leetcode.
+    * */
     public String longestPalindrome4(String s) {
 
-        String res = "";
+        int startAt = 0;
+        int endAt = 0;
 
         for (int i = 0; i < s.length(); i++) {
 
-            if (res.length() > s.length() - i) {
-                break;
+            int[] expand = expand(s, i, i);
+
+            if ((expand[1] - expand[0]) > (endAt - startAt)) {
+                startAt = expand[0];
+                endAt = expand[1];
             }
 
-            String expand = expand(s, i, i);
+            int[] expand1 = expand(s, i, i + 1);
 
-            if (expand.length() > res.length()) {
-                res = expand;
-            }
-
-            String expand1 = expand(s, i, i + 1);
-
-            if (expand1.length() > res.length()) {
-                res = expand1;
+            if ((expand1[1] - expand1[0]) > (endAt - startAt)) {
+                startAt = expand1[0];
+                endAt = expand1[1];
             }
 
         }
 
-        return res;
+        return s.substring(startAt, endAt);
     }
 
-    private String expand(String s, int start, int end) {
+    private int[] expand(String s, int start, int end) {
 
-        while (true) {
-
-            if (start < 0 || end >= s.length()) {
-                break;
-            }
-
-            if (s.charAt(start) != s.charAt(end)) {
-                break;
-            }
-
-            if ((start - 1) < 0 || (end + 1) >= s.length()) {
-                break;
-            }
+        while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
 
             start--;
             end++;
 
         }
 
-        return s.substring(start, end);
+        return new int[]{start + 1, end};
     }
 
-//    private String expand(String s, int start, int end) {
-//
-//        while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
-//            start--;
-//            end++;
-//        }
-//
-//        return s.substring(start + 1, end);
-//    }
-
+    /* Note:
+    *   This is accepted in leetcode with DP.
+    * */
     public String longestPalindrome5(String s) {
 
         boolean[][] dp = new boolean[s.length()][s.length()];
