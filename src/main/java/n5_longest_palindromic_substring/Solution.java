@@ -1,6 +1,5 @@
 package n5_longest_palindromic_substring;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -218,12 +217,11 @@ class Solution {
 
     public String longestPalindrome4(String s) {
 
-        int length = s.length();
         String res = "";
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < s.length(); i++) {
 
-            if (res.length() > (length - i)) {
+            if (res.length() > s.length() - i) {
                 break;
             }
 
@@ -246,44 +244,74 @@ class Solution {
 
     private String expand(String s, int start, int end) {
 
-        while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
+        while (true) {
+
+            if (start < 0 || end >= s.length()) {
+                break;
+            }
+
+            if (s.charAt(start) != s.charAt(end)) {
+                break;
+            }
+
+            if ((start - 1) < 0 || (end + 1) >= s.length()) {
+                break;
+            }
+
             start--;
             end++;
+
         }
 
-        return s.substring(start + 1, end);
+        return s.substring(start, end);
     }
+
+//    private String expand(String s, int start, int end) {
+//
+//        while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
+//            start--;
+//            end++;
+//        }
+//
+//        return s.substring(start + 1, end);
+//    }
 
     public String longestPalindrome5(String s) {
 
         boolean[][] dp = new boolean[s.length()][s.length()];
 
-        for (int i = 0; i < s.length(); i++) {
+        int startAt = 0;
+        int endAt = 0;
 
-            for (int j = 0; j < s.length(); j++) {
+        for (int y = 0; y < s.length(); y++) {
 
-                if (j >= i) {
+            for (int x = 0; x < s.length() - y; x++) {
 
-                    if (s.charAt(i) == s.charAt(j)) {
+                if (s.charAt(x) == s.charAt(y + x)) {
 
-                        dp[i][j] = true;
+                    boolean palindrome = true;
 
-                        int lastIndexI = i > 0 ? i - 1 : i;
-                        int lastIndexJ = i > 0 ? i - 1 : i;
-                        System.out.printf("DP: %d-%d - %b", lastIndexI, lastIndexJ, dp[lastIndexI][lastIndexJ]);
+                    int xPrevInd = x + 1;
+                    int yPrevInd = (y + x) - 1;
 
+                    if (y > 1) {
+                        palindrome = dp[xPrevInd][yPrevInd];
                     }
 
-                    System.out.printf("Substring: %d - %d - %s\n", i, j, s.substring(i, j+1));
+                    dp[x][y + x] = palindrome;
+
+                    if (palindrome && (y > (endAt - startAt))) {
+                        startAt = x;
+                        endAt = y + x;
+                    }
+
                 }
 
             }
 
         }
 
-        System.out.println(Arrays.deepToString(dp));
-
-        return null;
+        return s.substring(startAt, endAt + 1);
     }
 
     private static boolean isPalindrome(String value) {
