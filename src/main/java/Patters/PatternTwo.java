@@ -12,23 +12,21 @@ public class PatternTwo {
 
     public static void main(String[] args) {
 
-        int r = 8;
-        int c = 8;
+        int n = 6;
 
-        for (int i = 1; i <= r; i++) {
+        int mid = n / 2;
 
-            for (int j = 1; j <= c; j++) {
+        for (int i = 1; i <= n; i++) {
 
+            for (int j = 1; j <= n; j++) {
 
-
-//                if ((c - i) != i && j <= i || j > c - i) {
-//                    System.out.print("*");
-//                } else if (j) {
-//
-//                }
-//                else {
-//                    System.out.print("-");
-//                }
+                if (i <= mid && (j <= i || j > (n - i))) {
+                    System.out.print(" * ");
+                } else if (i >= mid && (j - (i - mid - 1) > mid || j + (i - mid - 1) <= mid)) {
+                    System.out.print(" * ");
+                } else {
+                    System.out.print("   ");
+                }
 
             }
 
