@@ -34,6 +34,77 @@ public class PatternTwo {
 
         }
 
+        System.out.println("======================================================");
+
+        n = 5;
+        int col = ((n - 2) * 2 + 3);
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= col; j++) {
+
+                if ((j <= n - i) || ((col + 1) - i) < j) {
+                    System.out.print(" ");
+                } else {
+                    System.out.print("*");
+                }
+
+            }
+
+            System.out.println();
+
+        }
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+
+            for (int j = 1; j <= n; j++) {
+                System.out.print("*");
+            }
+
+            System.out.println();
+
+        }
+
+        System.out.println("======================================================");
+
+        n = 5;
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.printf("%s ", i);
+            }
+
+            System.out.println();
+
+        }
+
+        System.out.println("======================================================");
+
+        n = 5;
+
+        for (int i = 0; i < n; i++) {
+
+            for (int j = 1; j <= n - i - 1; j++) {
+                System.out.print(" ");
+            }
+
+            for (int j = 0; j < i + i + 1; j++) {
+                System.out.print((i + 1) - j > 0 ? (i + 1) - j : (j-i) + 1);
+            }
+
+            System.out.println();
+
+        }
+
+
     }
 
 }
