@@ -14,7 +14,7 @@ class Main {
 
         System.out.println(solution.letterCombinations("23"));
 
-        System.out.println(solution.letterCombinations(""));
+//        System.out.println(solution.letterCombinations(""));
 
     }
 
