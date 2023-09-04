@@ -37,8 +37,8 @@ class Solution {
         recursion(digits, 0, "", combinations);
 
         return combinations;
-    }
 
+    }
 
     private void recursion(String digits, int depth, String c, List<String> combinations) {
 
@@ -54,6 +54,36 @@ class Solution {
 
         }
 
+    }
+
+    public List<String> letterCombinations1(String digits) {
+
+        if (digits == null || digits.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return recursion1(digits, 0, "");
+
+    }
+
+    private List<String> recursion1(String digits, int depth, String c) {
+
+        List<String> combinations = new ArrayList<>();
+
+        String current = STRING_MAP.get(digits.charAt(depth));
+
+        for (int i = 0; i < current.length(); i++) {
+
+            if (depth < digits.length() - 1) {
+                List<String> recursion = recursion1(digits, depth + 1, c + current.charAt(i));
+                combinations.addAll(recursion);
+            } else {
+                combinations.add(c + current.charAt(i));
+            }
+
+        }
+
+        return combinations;
     }
 
 }

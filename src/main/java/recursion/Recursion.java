@@ -92,7 +92,7 @@ public class Recursion {
 
     public void nthFibonacciSequenceR(int n, int v, int v1) {
 
-        if (n < 3) {
+        if (n < 1) {
             return;
         }
 
@@ -103,6 +103,40 @@ public class Recursion {
 
         nthFibonacciSequenceR(n - 1, v, v1);
 
+    }
+
+    public int powCal(int x, int n) {
+
+        if (n == 0) {
+            return 1;
+        }
+
+        if (x == 0) {
+            return 0;
+        }
+
+        int pow = powCal(x, n - 1);
+
+        return x * pow;
+    }
+
+    public int powCal1(int x, int n) {
+
+        if (n == 0) {
+            return 1;
+        }
+
+        if (x == 0) {
+            return 0;
+        }
+
+        int pow = powCal1(x, n/2);
+
+        if (n % 2 == 0) {
+            return pow * pow;
+        }
+
+        return x * pow * pow;
     }
 
 }

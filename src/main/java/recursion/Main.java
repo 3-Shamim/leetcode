@@ -23,19 +23,22 @@ public class Main {
         System.out.println(sum);
         recursion.sumOfNthNaturalNumber1(10, 0); // Print sum of nth natural number
         System.out.println();
-        int sum1 = recursion.sumOfNthNaturalNumber2(10);// Print sum of nth natural number
+        int sum1 = recursion.sumOfNthNaturalNumber2(10); // Print sum of nth natural number
         System.out.println(sum1);
-        int n = recursion.nthFactorial(10);// Print nth Factorial
+        int n = recursion.nthFactorial(10); // Print nth Factorial
         System.out.println(n);
-        recursion.nthFibonacciSequence(10);// Print nth Factorial
+        recursion.nthFibonacciSequence(10); // Print nth Factorial
         System.out.println();
         System.out.printf("%d %d ", 0, 1);
-        recursion.nthFibonacciSequenceR(10, 2, 0, 1);// Print nth Factorial
+        recursion.nthFibonacciSequenceR(10, 2, 0, 1); // Print nth Factorial
         System.out.println();
         System.out.printf("%d %d ", 0, 1);
-        recursion.nthFibonacciSequenceR(10, 0, 1);// Print nth Factorial
+        recursion.nthFibonacciSequenceR(10 - 2, 0, 1); // Print nth Factorial
         System.out.println();
-
+        int v = recursion.powCal(2, 5);// Print Power calculation
+        System.out.println(v);
+        int v1 = recursion.powCal1(2, 5);// Print Power calculation
+        System.out.println(v1);
     }
 
 }
