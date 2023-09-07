@@ -175,6 +175,7 @@ class Solution {
     /* Note
      *   This is not accepted on leetcode because time complexity.
      * */
+
     public List<List<Integer>> fourSum4(int[] nums, int target) {
 
         int length = nums.length;
@@ -198,7 +199,7 @@ class Solution {
             }
         }
 
-        Set<List<Integer>> resultIndex = new HashSet<>();
+        Set<List<Integer>> resultSet = new HashSet<>();
 
         for (int i = 0; i < length - 1; i++) {
             for (int j = i + 1; j < length; j++) {
@@ -209,8 +210,8 @@ class Solution {
                 if (pairs != null) {
 
                     /* Todo:
-                    *   Need to think how to replace this loop.
-                    * */
+                     *   Need to think how to replace this loop.
+                     * */
 
                     for (Integer[] pair : pairs) {
 
@@ -218,7 +219,7 @@ class Solution {
                         Integer l = pair[1];
 
                         if (i != k && i != l && j != k && j != l) {
-                            resultIndex.add(List.of(i, j, k, l));
+                            resultSet.add(mySort(nums[i], nums[j], nums[k], nums[l]));
                         }
 
                     }
@@ -228,18 +229,41 @@ class Solution {
             }
         }
 
-        Set<List<Integer>> set = new HashSet<>();
-        resultIndex.forEach(v -> {
-            List<Integer> values = new ArrayList<>();
-            values.add(nums[v.get(0)]);
-            values.add(nums[v.get(1)]);
-            values.add(nums[v.get(2)]);
-            values.add(nums[v.get(3)]);
-            Collections.sort(values);
-            set.add(values);
-        });
-
-        return new ArrayList<>(set);
+        return new ArrayList<>(resultSet);
     }
+
+    private List<Integer> mySort(int a, int b, int c, int d) {
+
+        int swap;
+
+        if (a > b) {
+            swap = a;
+            a = b;
+            b = swap;
+        }
+        if (c > d) {
+            swap = c;
+            c = d;
+            d = swap;
+        }
+        if (a > c) {
+            swap = a;
+            a = c;
+            c = swap;
+        }
+        if (b > d) {
+            swap = b;
+            b = d;
+            d = swap;
+        }
+        if (b > c) {
+            swap = b;
+            b = c;
+            c = swap;
+        }
+
+        return List.of(a, b, c, d);
+    }
+
 
 }
