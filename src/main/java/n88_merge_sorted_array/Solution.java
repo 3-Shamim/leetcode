@@ -17,7 +17,7 @@ class Solution {
             return;
         }
 
-        List<Integer> r = new ArrayList<>();
+        List<Integer> values = new ArrayList<>();
 
         int i = 0;
         int j = 0;
@@ -27,7 +27,7 @@ class Solution {
             int a = nums1[i];
             int b = nums2[j];
 
-            r.add(Math.min(a, b));
+            values.add(Math.min(a, b));
 
             if (a < b) {
                 i++;
@@ -39,18 +39,18 @@ class Solution {
 
         if (i < m) {
             for (int k = i; k < m; k++) {
-                r.add(nums1[k]);
+                values.add(nums1[k]);
             }
         }
 
         if (j < n) {
             for (int k = j; k < n; k++) {
-                r.add(nums2[k]);
+                values.add(nums2[k]);
             }
         }
 
-        for (int index = 0; index < r.size(); index++) {
-            nums1[index] = r.get(index);
+        for (int index = 0; index < values.size(); index++) {
+            nums1[index] = values.get(index);
         }
 
     }

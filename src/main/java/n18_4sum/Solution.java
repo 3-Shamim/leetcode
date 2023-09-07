@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 class Solution {
 
     /* Note
-     *   This is not accepted on leetcode because of sum exceed the 'long'.
+     *   This is not accepted on leetcode because of sum exceed the 'long' and time complexity.
      * */
     public List<List<Integer>> fourSum1(int[] nums, int target) {
 
@@ -31,7 +31,64 @@ class Solution {
         return new ArrayList<>(result);
     }
 
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+
+        if (nums.length < 4) {
+            return new ArrayList<>();
+        }
+
+        Arrays.sort(nums);
+
+        Set<List<Integer>> result = new HashSet<>();
+
+        for (int i = 0; i < nums.length; i++) {
+
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+
+            long currentTarget = (long) target - nums[i];
+
+            for (int j = i + 1; j < nums.length; j++) {
+
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                    continue;
+                }
+
+                int s = j + 1;
+                int e = nums.length - 1;
+
+                while (s < e) {
+
+                    long sum = (long) nums[j] + nums[s] + nums[e];
+                    if (sum == currentTarget) {
+                        result.add(List.of(nums[i], nums[j], nums[s], nums[e]));
+                        s++;
+
+                        while (s < e && nums[s] == nums[s - 1]) {
+                            s++;
+                        }
+
+                    } else if (sum < currentTarget) {
+                        s++;
+                    } else {
+                        e--;
+                    }
+
+                }
+
+            }
+
+        }
+
+        return new ArrayList<>(result);
+    }
+
     public List<List<Integer>> fourSum2(int[] nums, int target) {
+
+        if (nums.length < 4) {
+            return new ArrayList<>();
+        }
 
         Arrays.sort(nums);
 
@@ -67,6 +124,9 @@ class Solution {
         return new ArrayList<>(result);
     }
 
+    /* Note
+     *   This is not accepted on leetcode because it's not covered all combinations.
+     * */
     public List<List<Integer>> fourSum3(int[] nums, int target) {
 
         int length = nums.length;
@@ -112,16 +172,28 @@ class Solution {
         return new ArrayList<>(result);
     }
 
-    public List<List<Integer>> fourSum(int[] nums, int target) {
+    /* Note
+     *   This is not accepted on leetcode because time complexity.
+     * */
+    public List<List<Integer>> fourSum4(int[] nums, int target) {
 
         int length = nums.length;
-        Map<BigInteger, List<Integer>> map = new HashMap<>();
+        Map<Long, List<Integer[]>> map = new HashMap<>();
 
         for (int i = 0; i < length - 1; i++) {
             for (int j = i + 1; j < length; j++) {
 
-                BigInteger sum = BigInteger.valueOf(nums[i]).add(BigInteger.valueOf(nums[j]));
-                map.put(sum, List.of(i, j));
+                long sum = (long) nums[i] + nums[j];
+                List<Integer[]> pairs = map.get(sum);
+
+                if (pairs == null) {
+                    List<Integer[]> list = new ArrayList<>();
+                    list.add(new Integer[]{i, j});
+                    map.put(sum, list);
+                } else {
+                    pairs.add(new Integer[]{i, j});
+                    map.put(sum, pairs);
+                }
 
             }
         }
@@ -131,16 +203,24 @@ class Solution {
         for (int i = 0; i < length - 1; i++) {
             for (int j = i + 1; j < length; j++) {
 
-                BigInteger sum = BigInteger.valueOf(nums[i]).add(BigInteger.valueOf(nums[j]));
-                List<Integer> index = map.get(BigInteger.valueOf(target).subtract(sum));
+                long sum = (long) nums[i] + nums[j];
+                List<Integer[]> pairs = map.get(target - sum);
 
-                if (index != null) {
+                if (pairs != null) {
 
-                    Integer k = index.get(0);
-                    Integer l = index.get(1);
+                    /* Todo:
+                    *   Need to think how to replace this loop.
+                    * */
 
-                    if (i != k && i != l && j != k && j != l) {
-                        resultIndex.add(List.of(i, j, k, l));
+                    for (Integer[] pair : pairs) {
+
+                        Integer k = pair[0];
+                        Integer l = pair[1];
+
+                        if (i != k && i != l && j != k && j != l) {
+                            resultIndex.add(List.of(i, j, k, l));
+                        }
+
                     }
 
                 }
@@ -148,15 +228,18 @@ class Solution {
             }
         }
 
-        return resultIndex.stream().map(v -> {
+        Set<List<Integer>> set = new HashSet<>();
+        resultIndex.forEach(v -> {
             List<Integer> values = new ArrayList<>();
             values.add(nums[v.get(0)]);
             values.add(nums[v.get(1)]);
             values.add(nums[v.get(2)]);
             values.add(nums[v.get(3)]);
             Collections.sort(values);
-            return values;
-        }).distinct().collect(Collectors.toList());
+            set.add(values);
+        });
+
+        return new ArrayList<>(set);
     }
 
 }
