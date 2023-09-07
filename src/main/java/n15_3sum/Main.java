@@ -12,11 +12,9 @@ class Main {
 
         Solution solution = new Solution();
 
-        System.out.println(solution.threeSumClosest(new int[]{-1, 2, 1, -4}, 1));
+        System.out.println(solution.threeSum(new int[]{-1, 0, 1, 2, -1, -4}));
 
-        System.out.println(solution.threeSumClosest(new int[]{-1, 1, 1, -4}, 1));
-
-        System.out.println(solution.threeSumClosest(new int[]{0, 0, 0}, 1));
+        System.out.println(solution.threeSum(new int[]{-2, 0, 1, 1, 2})); // [[-2,0,2],[-2,1,1]]
 
     }
 
