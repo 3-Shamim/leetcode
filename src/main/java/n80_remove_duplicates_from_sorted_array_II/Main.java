@@ -1,4 +1,4 @@
-package n27_remove_element;
+package n80_remove_duplicates_from_sorted_array_II;
 
 import java.util.Arrays;
 
@@ -14,43 +14,38 @@ class Main {
 
         Solution solution = new Solution();
 
-        int[] nums = new int[]{3, 2, 2, 3};
-        int k = solution.removeElement2(nums, 3);
+        int[] nums = new int[]{1, 1, 2};
+        int k = solution.removeDuplicates(nums);
         System.out.println(k);
         System.out.println(Arrays.toString(nums));
 
-        nums = new int[]{3, 2, 2, 3, 2, 2};
-        k = solution.removeElement(nums, 2);
+        nums = new int[]{1, 2, 3, 3, 3, 4};
+        k = solution.removeDuplicates(nums);
         System.out.println(k);
         System.out.println(Arrays.toString(nums));
 
-        nums = new int[]{2, 2, 2, 2, 2};
-        k = solution.removeElement(nums, 2);
+        nums = new int[]{1, 2, 3};
+        k = solution.removeDuplicates(nums);
         System.out.println(k);
         System.out.println(Arrays.toString(nums));
 
-        nums = new int[]{2};
-        k = solution.removeElement(nums, 2);
+        nums = new int[]{1, 1, 1};
+        k = solution.removeDuplicates(nums);
         System.out.println(k);
         System.out.println(Arrays.toString(nums));
 
-        nums = new int[]{3};
-        k = solution.removeElement(nums, 2);
+        nums = new int[]{1, 2, 2, 2, 3, 3, 3, 4};
+        k = solution.removeDuplicates(nums);
         System.out.println(k);
         System.out.println(Arrays.toString(nums));
 
-        nums = new int[]{2, 3};
-        k = solution.removeElement(nums, 2);
+        nums = new int[]{1, 1, 1, 2, 2, 2, 3, 3, 3, 4};
+        k = solution.removeDuplicates(nums);
         System.out.println(k);
         System.out.println(Arrays.toString(nums));
 
-        nums = new int[]{3, 2};
-        k = solution.removeElement(nums, 2);
-        System.out.println(k);
-        System.out.println(Arrays.toString(nums));
-
-        nums = new int[]{0, 1, 2, 2, 3, 0, 4, 2};
-        k = solution.removeElement(nums, 2);
+        nums = new int[]{1, 1, 2, 2, 3, 3, 4};
+        k = solution.removeDuplicates(nums);
         System.out.println(k);
         System.out.println(Arrays.toString(nums));
 
