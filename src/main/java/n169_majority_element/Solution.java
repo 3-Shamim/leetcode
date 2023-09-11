@@ -8,15 +8,19 @@ class Solution {
 
     public int majorityElement(int[] nums) {
 
-        Arrays.sort(nums);
+        int element = 0;
+        int count = 0;
 
-        int element = nums[0];
-        int startPoint = 0;
+        for (int num : nums) {
 
-        for (int i = 1; i < nums.length; i++) {
+            if (count == 0) {
+                element = num;
+            }
 
-            if (nums[i] != nums[i - 1]) {
-
+            if (element == num) {
+                count++;
+            } else {
+                count--;
             }
 
         }
@@ -41,6 +45,37 @@ class Solution {
 
             map.put(num, count);
 
+        }
+
+        return element;
+    }
+
+    public int majorityElement2(int[] nums) {
+
+        Arrays.sort(nums);
+
+        int element = nums[0];
+        int lastCount = 0;
+        int count = 1;
+
+        for (int i = 1; i < nums.length; i++) {
+
+            if (nums[i] != nums[i - 1]) {
+
+                if (lastCount < count) {
+                    lastCount = count;
+                    element = nums[i - 1];
+                }
+
+                count = 1;
+            } else {
+                count++;
+            }
+
+        }
+
+        if (lastCount < count) {
+            element = nums[nums.length - 1];
         }
 
         return element;

@@ -24,6 +24,10 @@ class Main {
         k = solution.majorityElement(nums);
         System.out.println(k);
 
+        nums = new int[]{8, 8, 7, 7, 7};
+        k = solution.majorityElement(nums);
+        System.out.println(k);
+
 
     }
 
