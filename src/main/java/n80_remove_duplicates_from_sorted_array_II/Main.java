@@ -49,6 +49,16 @@ class Main {
         System.out.println(k);
         System.out.println(Arrays.toString(nums));
 
+        nums = new int[]{1, 1, 1, 2, 2, 3};
+        k = solution.removeDuplicates(nums);
+        System.out.println(k);
+        System.out.println(Arrays.toString(nums));
+
+        nums = new int[]{0, 0, 1, 1, 1, 1, 2, 3, 3};
+        k = solution.removeDuplicates(nums);
+        System.out.println(k);
+        System.out.println(Arrays.toString(nums));
+
     }
 
 }
