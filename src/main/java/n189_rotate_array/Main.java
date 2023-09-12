@@ -22,6 +22,13 @@ class Main {
         solution.rotate(nums, 2);
         System.out.println(Arrays.toString(nums));
 
+        nums = new int[]{-1};
+        solution.rotate(nums, 2);
+        System.out.println(Arrays.toString(nums));
+
+        nums = new int[]{1,2};
+        solution.rotate(nums, 3);
+        System.out.println(Arrays.toString(nums));
 
     }
 

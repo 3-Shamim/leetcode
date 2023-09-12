@@ -1,16 +1,40 @@
 package n189_rotate_array;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 class Solution {
 
-    public void rotate(int[] nums, int k) {
+    public void rotate3(int[] nums, int k) {
 
         int len = nums.length;
+
+        k %= len;
 
         int[] temp = new int[len];
 
         System.arraycopy(nums, len - k, temp, 0, k);
         System.arraycopy(nums, 0, temp, k, len - k);
         System.arraycopy(temp, 0, nums, 0, len);
+
+    }
+
+    public void rotate(int[] nums, int k) {
+
+        Deque<Integer> queue = new ArrayDeque<>();
+
+        for (int num : nums) {
+            queue.addLast(num);
+        }
+
+        for (int i = 0; i < k; i++) {
+            Integer integer = queue.removeLast();
+            queue.addFirst(integer);
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = queue.removeFirst();
+        }
 
     }
 
