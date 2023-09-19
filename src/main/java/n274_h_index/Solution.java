@@ -8,7 +8,32 @@ class Solution {
 
         Arrays.sort(citations);
 
-        return 0;
+        int i = 0;
+        int hIndex = 1;
+
+        while (i < citations.length && hIndex <= (citations.length - i)) {
+
+            int v = citations[i];
+
+            if (v < 1) {
+                i++;
+                continue;
+            }
+
+            if (hIndex <= v && hIndex <= (citations.length - i)) {
+
+                if (hIndex == v) {
+                    i++;
+                }
+                hIndex++;
+
+            } else {
+                i++;
+            }
+
+        }
+
+        return hIndex - 1;
     }
 
 }
