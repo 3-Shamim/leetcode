@@ -11,9 +11,23 @@ class Main {
     public static void main(String[] args) {
 
         RandomizedSet obj = new RandomizedSet();
-        boolean param_1 = obj.insert(1);
-        boolean param_2 = obj.remove(2);
+        obj.insert(0);
+        System.out.println(RandomizedSet.map);
+        System.out.println(RandomizedSet.store);
+        obj.insert(1);
+        System.out.println(RandomizedSet.map);
+        System.out.println(RandomizedSet.store);
+        obj.remove(0);
+        System.out.println(RandomizedSet.map);
+        System.out.println(RandomizedSet.store);
+        obj.insert(2);
+        System.out.println(RandomizedSet.map);
+        System.out.println(RandomizedSet.store);
+        obj.remove(1);
+        System.out.println(RandomizedSet.map);
+        System.out.println(RandomizedSet.store);
         int param_3 = obj.getRandom();
+        System.out.println(param_3);
 
     }
 

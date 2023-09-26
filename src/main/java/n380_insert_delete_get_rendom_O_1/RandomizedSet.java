@@ -1,7 +1,6 @@
 package n380_insert_delete_get_rendom_O_1;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,22 +12,47 @@ import java.util.Set;
 
 public class RandomizedSet {
 
-    private final Set<Integer> store = new HashSet<>();
+    public static final Map<Integer, Integer> map = new HashMap<>();
+    public static final List<Integer> store = new ArrayList<>();
 
     public RandomizedSet() {
 
     }
 
     public boolean insert(int val) {
-        return store.add(val);
+
+        if (map.containsKey(val)) {
+            return false;
+        }
+
+        store.add(val);
+        map.put(val, store.size() - 1);
+
+        return true;
     }
 
     public boolean remove(int val) {
-        return store.remove(val);
+
+        if (!map.containsKey(val)) {
+            return false;
+        }
+
+        Integer index = map.get(val);
+        Collections.swap(store, index, store.size() - 1);
+
+        map.put(store.get(index), index);
+
+        store.remove(store.size() - 1);
+        map.remove(val);
+
+        return true;
     }
 
+    // This will give you first element every time
     public int getRandom() {
-        return store.iterator().next();
+        Random random = new Random();
+        int index = random.nextInt(store.size());
+        return store.get(index);
     }
 
 }
