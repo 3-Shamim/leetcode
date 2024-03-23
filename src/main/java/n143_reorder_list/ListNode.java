@@ -1,0 +1,34 @@
+package n143_reorder_list;
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: Md. Shamim
+ * Date: ২১/৩/২৪
+ * Time: ১০:২১ PM
+ * Email: mdshamim723@gmail.com
+ */
+public class ListNode {
+
+    int val;
+    ListNode next;
+
+    ListNode() {
+    }
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val +
+                ", next=" + next +
+                '}';
+    }
+}
