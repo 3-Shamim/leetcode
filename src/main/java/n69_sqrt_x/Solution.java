@@ -12,6 +12,7 @@ public class Solution {
 
     public int mySqrt(int x) {
 
+//        return (int) Math.sqrt(x);
 //        return linearSearch(x);
 //        return binarySearch(x);
         return binarySearch1(x);
