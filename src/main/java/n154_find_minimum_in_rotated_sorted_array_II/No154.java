@@ -19,13 +19,12 @@ public class No154 {
 
             int mid = start + (end - start) / 2;
 
-            if (nums[mid] == nums[end] && nums[mid] == nums[start]) {
-                end = end - 1;
-                start = mid;
-            } else if (nums[mid] <= nums[end]) {
+            if (nums[mid] > nums[end]) {
+                start = mid + 1;
+            } else if (nums[mid] < nums[end]) {
                 end = mid;
             } else {
-                start = mid + 1;
+                end--;
             }
 
         }
