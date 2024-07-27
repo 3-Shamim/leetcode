@@ -1,4 +1,4 @@
-package n1539_Kth_missing_positive_number.n1351_count_negative_numbers_in_a_sorted_matrix;
+package n1539_Kth_missing_positive_number;
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,6 +28,30 @@ public class No1539 {
         }
 
         return end + k;
+    }
+
+    // Binary search
+    public static int findKthPositiveBS(int[] arr, int k) {
+
+        if (arr == null || arr.length == 0) {
+            return k;
+        }
+
+        int start = 0, end = arr.length;
+
+        while (start < end) {
+
+            int mid = start + (end - start) / 2;
+
+            if (arr[mid] - mid - 1 < k) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+
+        }
+
+        return (arr[start - 1] - (arr[start - 1] - start)) + k;
     }
 
     // Linear search
@@ -86,6 +110,7 @@ public class No1539 {
         System.out.println(findKthPositive(new int[]{2, 3, 4, 7, 11}, 9));
         System.out.println(findKthPositive(new int[]{1, 2, 3, 4}, 2));
         System.out.println(findKthPositive(new int[]{}, 2));
+        System.out.println(findKthPositive(new int[]{2}, 2));
 
     }
 
