@@ -12,6 +12,22 @@ public class No275 {
 
     public static int hIndex(int[] citations) {
 
+        int start = 0, end = Math.max(citations.length - 1, citations[citations.length - 1]);
+
+        while (start < end) {
+
+            int mid = start + (end - start) / 2;
+
+            if (mid == citations[citations.length - 1]) {
+                
+            }
+
+        }
+
+    }
+
+    public static int hIndex2(int[] citations) {
+
         int hIndex = 1;
 
         for (int i = 0; i < citations.length; i++) {
