@@ -12,77 +12,76 @@ public class No275 {
 
     public static int hIndex(int[] citations) {
 
-        int start = 0, end = Math.max(citations.length - 1, citations[citations.length - 1]);
+        int len = citations.length;
+        int start = 0, end = len;
 
         while (start < end) {
 
-            int mid = start + (end - start) / 2;
+            int mid = start + end >>> 1;
 
-            if (mid == citations[citations.length - 1]) {
-                
+            if (citations[mid] >= len - mid) {
+                end = mid;
+            } else {
+                start = mid + 1;
             }
 
         }
 
+        return len - start;
     }
 
     public static int hIndex2(int[] citations) {
 
         int hIndex = 1;
 
-        for (int i = 0; i < citations.length; i++) {
+        for (int i = citations.length - 1; i >= 0; i--) {
 
             if (citations[i] >= hIndex) {
-
-                if (citations.length - i == hIndex) {
-                    return hIndex;
-                }
-
-                if (citations.length - i < hIndex) {
-                    break;
-                }
-
-                if (citations[i] > hIndex) {
-                    i--;
-                }
-
                 hIndex++;
-
+            } else {
+                break;
             }
 
         }
 
-        return 0;
+        return hIndex - 1;
     }
 
     public static int hIndex1(int[] citations) {
 
-        int max = citations[citations.length - 1];
+        int min = Math.min(citations.length, citations[citations.length - 1]);
+        int ans = 0;
 
-        for (int i = 1; i <= max; i++) {
+        for (int i = 1; i <= min; i++) {
 
             int count = 0;
 
-            for (int j = 0; j < citations.length; j++) {
+            for (int j = citations.length - 1; j >= citations.length - i; j--) {
 
                 if (citations[j] >= i) {
-                    count = citations.length - j;
+                    count++;
+                } else {
                     break;
                 }
 
             }
 
             if (count == i) {
-                return i;
+                ans = i;
             }
+
 
         }
 
-        return 0;
+        return ans;
     }
 
     public static void main(String[] args) {
 
+        System.out.println(hIndex(new int[]{0, 0}));
+        System.out.println(hIndex(new int[]{0, 1}));
+        System.out.println(hIndex(new int[]{2, 3}));
+        System.out.println(hIndex(new int[]{2, 2}));
         System.out.println(hIndex(new int[]{1, 2, 3}));
         System.out.println(hIndex(new int[]{0, 1, 3, 5, 6}));
         System.out.println(hIndex(new int[]{1, 2, 100}));
