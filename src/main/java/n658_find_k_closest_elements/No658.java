@@ -141,7 +141,7 @@ public class No658 {
 //        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 6));
 //        System.out.println(findClosestElements(new int[]{-4, 1, 2, 3, 4, 5}, 2, 3));
 //        System.out.println(findClosestElements(new int[]{-4, 1, 2, 3, 4, 5}, 2, -2));
-//
-//    }
-//
-//}
+
+    }
+
+}
