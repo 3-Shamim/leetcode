@@ -12,6 +12,7 @@ import java.util.*;
 
 public class No658 {
 
+    // Using binary search and two pointer
     public static List<Integer> findClosestElements(int[] arr, int k, int x) {
 
         List<Integer> res = new ArrayList<>();
@@ -27,31 +28,22 @@ public class No658 {
 
         int index = binarySearch(arr, x);
 
-        int i = index, j = index + 1;
+        int i = index, j = index;
 
-        while ((j - i) + 1 < k) {
+        while ((j - i + 1) < k) {
 
-            if (i <= 0) {
+            if (i == 0) {
                 j += k - 1;
                 break;
-//                j++;
-//                continue;
             }
 
-            if (j >= arr.length - 1) {
-                i = j - k - 1;
+            if (j == arr.length - 1) {
+                i = j - (k - 1);
                 break;
-//                i--;
-//                continue;
             }
 
-            int a = arr[i];
-            int b = arr[j];
-
-//            if (Math.abs(a - x) == Math.abs(b - x) && a == x) {
-//                i--;
-//                j++;
-//            }
+            int a = arr[i - 1];
+            int b = arr[j + 1];
 
             if (Math.abs(a - x) <= Math.abs(b - x)) {
                 i--;
@@ -91,9 +83,11 @@ public class No658 {
 
     public static void main(String[] args) {
 
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 3));
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 3, 5}, 4, 3));
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 3));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 3, 3));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 3, 5}, 4, 3));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 1));
         System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 6));
         System.out.println(findClosestElements(new int[]{-4, 1, 2, 3, 4, 5}, 2, 3));
         System.out.println(findClosestElements(new int[]{-4, 1, 2, 3, 4, 5}, 2, -2));
