@@ -14,7 +14,7 @@ import java.util.List;
 public class No658 {
 
     // Using sliding window
-    public static List<Integer> findClosestElementsS(int[] arr, int k, int x) {
+    public static List<Integer> findClosestElementSW(int[] arr, int k, int x) {
 
         List<Integer> res = new ArrayList<>();
 
@@ -76,30 +76,33 @@ public class No658 {
 
         int i = index, j = index;
 
-        while ((j - i + 1) < k) {
+        while (j - i < k) {
 
-            if (i == 0) {
-                j += k - 1;
+            if (i == -1) {
+                j = k - 1;
                 break;
             }
 
             if (j == arr.length - 1) {
-                i = j - (k - 1);
+                i = j - k;
                 break;
             }
 
-            int a = arr[i - 1];
-            int b = arr[j + 1];
+            int a = arr[i];
+            int b = arr[j];
+            int b1 = arr[j + 1];
 
-            if (Math.abs(a - x) <= Math.abs(b - x)) {
-                i--;
-            } else {
+            if (Math.abs(b1 - x) < Math.abs(b - x)) {
                 j++;
+            } else if (Math.abs(b1 - x) < Math.abs(a - x)) {
+                j++;
+            } else {
+                i--;
             }
 
         }
 
-        for (; i <= j; i++) {
+        for (i = i + 1; i <= j; i++) {
             res.add(arr[i]);
         }
 
@@ -129,18 +132,20 @@ public class No658 {
 
     public static void main(String[] args) {
 
-//        System.out.println(findClosestElements(new int[]{1, 3, 3, 4, 5, 7, 7, 8, 8, 8}, 6, 6));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 4, 4, 4, 5, 5}, 3, 3));
+        System.out.println(findClosestElements(new int[]{1, 3, 3, 4, 5, 7, 7, 8, 8, 8}, 6, 6));
         System.out.println(findClosestElements(new int[]{1, 1, 1, 10, 10, 10}, 1, 9));
+        System.out.println(findClosestElements(new int[]{1, 1, 1, 10, 10, 10}, 3, 1));
         System.out.println(findClosestElements(new int[]{1, 1, 1, 10, 10, 10}, 2, 9));
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 3));
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 3, 3));
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 3, 5}, 4, 3));
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 3, 5}, 2, 3));
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1));
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 1));
-//        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 6));
-//        System.out.println(findClosestElements(new int[]{-4, 1, 2, 3, 4, 5}, 2, 3));
-//        System.out.println(findClosestElements(new int[]{-4, 1, 2, 3, 4, 5}, 2, -2));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 3));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 3, 3));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 3, 5}, 4, 3));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 3, 5}, 2, 3));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 1));
+        System.out.println(findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 6));
+        System.out.println(findClosestElements(new int[]{-4, 1, 2, 3, 4, 5}, 2, 3));
+        System.out.println(findClosestElements(new int[]{-4, 1, 2, 3, 4, 5}, 2, -2));
 
     }
 
