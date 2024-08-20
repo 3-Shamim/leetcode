@@ -1,4 +1,4 @@
-package n611_valid_triangle_number.n658_find_k_closest_elements;
+package n611_valid_triangle_number;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 
 public class No611 {
-    
+
     public static int triangleNumber(int[] nums) {
 
         if (nums == null || nums.length < 3) {
@@ -30,7 +30,7 @@ public class No611 {
 
                 if (nums[a] + nums[b] > nums[c]) {
                     count += b - a;
-                    b --;
+                    b--;
                 } else {
                     a++;
                 }
